@@ -116,30 +116,31 @@
         /* Title styling */
         h1 {
             font-family: 'Pacifico', cursive;
-            font-size: clamp(2rem, 8vw, 4rem);
+            font-size: clamp(1.5rem, 6vw, 4rem);
             color: var(--text-dark);
             margin-bottom: 1rem;
             animation: fade-in-down 1s ease-out;
             text-shadow: 2px 2px 4px rgba(255, 107, 157, 0.3);
+            line-height: 1.3;
         }
 
         .subtitle {
-            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-size: clamp(0.9rem, 3.5vw, 1.5rem);
             color: var(--text-dark);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             opacity: 0;
             animation: fade-in 1s ease-out 0.5s forwards;
         }
 
         /* Progress section */
         .progress-section {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             opacity: 0;
             animation: fade-in 1s ease-out 1s forwards;
         }
 
         .progress-label {
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             color: var(--text-dark);
             margin-bottom: 0.5rem;
             font-weight: 600;
@@ -148,7 +149,7 @@
         .progress-bar {
             background: rgba(255, 255, 255, 0.5);
             border-radius: 50px;
-            height: 30px;
+            height: 25px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
         }
@@ -161,30 +162,31 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            padding-right: 15px;
+            padding-right: 10px;
             font-weight: 700;
             color: white;
-            font-size: 0.9rem;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
         }
 
         /* Heart counter */
         .heart-counter {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            margin-bottom: 1.5rem;
             opacity: 0;
             animation: fade-in 1s ease-out 1.2s forwards;
         }
 
         /* Tease message */
         .tease-message {
-            min-height: 60px;
-            margin-bottom: 2rem;
+            min-height: 50px;
+            margin-bottom: 1.5rem;
             opacity: 0;
             animation: fade-in 1s ease-out 1.4s forwards;
+            padding: 0 10px;
         }
 
         .tease-message p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
             color: var(--red-soft);
             font-weight: 600;
             animation: message-pop 0.5s ease-out;
@@ -194,21 +196,22 @@
         .button-container {
             position: relative;
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            min-height: 150px;
+            min-height: 180px;
             opacity: 0;
             animation: fade-in 1s ease-out 1.6s forwards;
+            padding: 20px 10px;
         }
 
         /* Buttons */
         button {
             font-family: 'Quicksand', sans-serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
             font-weight: 700;
-            padding: 20px 50px;
+            padding: 15px 40px;
             border: none;
             border-radius: 50px;
             cursor: pointer;
@@ -395,30 +398,106 @@
 
         /* Mobile responsiveness */
         @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: clamp(1.3rem, 5vw, 2rem);
+                margin-bottom: 0.8rem;
+            }
+
+            .subtitle {
+                font-size: clamp(0.85rem, 3vw, 1rem);
+                margin-bottom: 1.5rem;
+            }
+
             .button-container {
-                min-height: 120px;
+                min-height: 160px;
+                padding: 15px 5px;
+                gap: 12px;
             }
             
             button {
-                font-size: 1.2rem;
-                padding: 15px 35px;
+                font-size: clamp(1rem, 3.5vw, 1.2rem);
+                padding: 12px 30px;
             }
 
             .heart-counter {
-                font-size: 1.5rem;
+                font-size: clamp(1rem, 3.5vw, 1.3rem);
+                margin-bottom: 1rem;
+            }
+
+            .tease-message {
+                min-height: 45px;
+                margin-bottom: 1rem;
+            }
+
+            .tease-message p {
+                font-size: clamp(0.9rem, 3vw, 1rem);
+            }
+
+            .progress-section {
+                margin-bottom: 1rem;
+            }
+
+            .progress-bar {
+                height: 22px;
+            }
+
+            .celebration-content {
+                padding: 20px;
+            }
+
+            .celebration-content h2 {
+                font-size: clamp(2rem, 8vw, 3rem);
+                margin-bottom: 0.8rem;
+            }
+
+            .celebration-content p {
+                font-size: clamp(0.95rem, 4vw, 1.3rem);
+                line-height: 1.5;
+                margin-bottom: 1.5rem;
+            }
+
+            .celebration-hearts {
+                font-size: 2rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+            }
+
+            button {
+                font-size: 0.95rem;
+                padding: 10px 25px;
+            }
+
+            .button-container {
+                min-height: 140px;
             }
         }
 
         /* Easter egg hint */
         .easter-egg-hint {
             position: fixed;
-            bottom: 20px;
+            bottom: 10px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 0.9rem;
+            font-size: clamp(0.75rem, 2.5vw, 0.9rem);
             color: var(--text-dark);
             opacity: 0.5;
             z-index: 50;
+            text-align: center;
+            padding: 5px 10px;
+            max-width: 90%;
         }
     </style>
 </head>
@@ -643,9 +722,13 @@
             this.style.transition = 'all 0.5s ease';
             this.innerHTML = '✨ Here are 3 secrets about me: I love chicken equally as you 🍗, I love seeing you wear clothes you feel you look sexy in (but only when with me 😉), I loveeee the fact that you\'re older than me even though I tease you bout that 💖';
             this.style.opacity = '1';
-            this.style.fontSize = '1.1rem';
-            this.style.maxWidth = '80%';
-            this.style.lineHeight = '1.5';
+            this.style.fontSize = 'clamp(0.8rem, 2.8vw, 1.1rem)';
+            this.style.maxWidth = '90%';
+            this.style.lineHeight = '1.6';
+            this.style.padding = '10px 15px';
+            this.style.background = 'rgba(255, 255, 255, 0.9)';
+            this.style.borderRadius = '15px';
+            this.style.boxShadow = '0 4px 15px rgba(255, 107, 157, 0.3)';
             
             // Create extra sparkles
             for (let i = 0; i < 20; i++) {
