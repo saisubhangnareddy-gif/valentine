@@ -498,6 +498,15 @@
             text-align: center;
             padding: 5px 10px;
             max-width: 90%;
+            pointer-events: auto;
+        }
+
+        .easter-egg-hint.revealed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 150;
         }
     </style>
 </head>
@@ -718,25 +727,67 @@
         }
 
         // Easter egg: Double click on hint
-        document.querySelector('.easter-egg-hint').addEventListener('dblclick', function() {
+        const easterEggHint = document.querySelector('.easter-egg-hint');
+        let easterEggRevealed = false;
+        
+        easterEggHint.addEventListener('dblclick', function() {
+            if (easterEggRevealed) return;
+            easterEggRevealed = true;
+            
+            // Create overlay
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.background = 'rgba(0, 0, 0, 0.5)';
+            overlay.style.zIndex = '149';
+            overlay.style.animation = 'fade-in 0.3s ease-out';
+            document.body.appendChild(overlay);
+            
+            this.classList.add('revealed');
             this.style.transition = 'all 0.5s ease';
-            this.innerHTML = '✨ Here are 3 secrets about me: I love chicken equally as you 🍗, I love seeing you wear clothes you feel you look sexy in (but only when with me 😉), I loveeee the fact that you\'re older than me even though I tease you bout that 💖';
+            this.innerHTML = '✨ Here are 3 secrets about me:<br><br>I love chicken equally as you 🍗<br><br>I love seeing you wear clothes you feel you look sexy in (but only when with me 😉)<br><br>I loveeee the fact that you\'re older than me even though I tease you bout that 💖<br><br><span style="font-size: 0.9em; opacity: 0.7;">Tap anywhere to close</span>';
             this.style.opacity = '1';
-            this.style.fontSize = 'clamp(0.8rem, 2.8vw, 1.1rem)';
-            this.style.maxWidth = '90%';
+            this.style.fontSize = 'clamp(0.85rem, 3vw, 1rem)';
+            this.style.maxWidth = '85%';
             this.style.lineHeight = '1.6';
-            this.style.padding = '10px 15px';
-            this.style.background = 'rgba(255, 255, 255, 0.9)';
-            this.style.borderRadius = '15px';
-            this.style.boxShadow = '0 4px 15px rgba(255, 107, 157, 0.3)';
+            this.style.padding = '20px';
+            this.style.background = 'rgba(255, 255, 255, 0.98)';
+            this.style.borderRadius = '20px';
+            this.style.boxShadow = '0 8px 30px rgba(255, 107, 157, 0.4)';
+            this.style.maxHeight = '80vh';
+            this.style.overflowY = 'auto';
+            
+            // Close on click
+            const closeEasterEgg = () => {
+                overlay.remove();
+                this.classList.remove('revealed');
+                this.style.position = 'fixed';
+                this.style.bottom = '10px';
+                this.style.top = 'auto';
+                this.style.transform = 'translateX(-50%)';
+                this.style.opacity = '0.5';
+                this.style.fontSize = 'clamp(0.75rem, 2.5vw, 0.9rem)';
+                this.style.padding = '5px 10px';
+                this.style.background = 'transparent';
+                this.style.boxShadow = 'none';
+                this.innerHTML = '💡 Psst... try double-clicking me';
+                this.style.zIndex = '50';
+                easterEggRevealed = false;
+            };
+            
+            overlay.addEventListener('click', closeEasterEgg);
+            this.addEventListener('click', closeEasterEgg);
             
             // Create extra sparkles
             for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     const sparkle = document.createElement('div');
                     sparkle.className = 'sparkle';
-                    sparkle.style.left = '50%';
-                    sparkle.style.bottom = '20px';
+                    sparkle.style.left = Math.random() * 100 + '%';
+                    sparkle.style.top = Math.random() * 100 + '%';
                     sparkle.style.animation = 'twinkle 2s ease-out';
                     document.getElementById('sparkles').appendChild(sparkle);
                     setTimeout(() => sparkle.remove(), 2000);
